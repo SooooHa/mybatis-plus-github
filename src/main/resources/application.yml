@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    druid:
+      username: root
+      password: 556677
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/test?serverTimezone=GMT
+
+mybatis-plus:
+  type-aliases-package: cn.id.bean
