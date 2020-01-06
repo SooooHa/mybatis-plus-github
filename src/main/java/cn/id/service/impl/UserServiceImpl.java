@@ -3,6 +3,7 @@ package cn.id.service.impl;
 import cn.id.bean.User;
 import cn.id.dao.UserDao;
 import cn.id.service.UserService;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -11,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -21,6 +23,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class UserServiceImpl extends ServiceImpl<UserDao,User> implements UserService {
+
     @Transactional
     @Override
     public int insertUser(User user) {
@@ -37,6 +40,10 @@ public class UserServiceImpl extends ServiceImpl<UserDao,User> implements UserSe
         return baseMapper.deleteById(user.getId());
     }
 
+    @Override
+    public List<User> findAll() {
+        return baseMapper.selectList(null);
+    }
 
 
     @Override
@@ -47,6 +54,12 @@ public class UserServiceImpl extends ServiceImpl<UserDao,User> implements UserSe
     @Override
     public IPage getUserPage(Page page, User user) {
         return baseMapper.getUsersPage(page, user);
+    }
+
+
+    @Override
+    public boolean saveOrUpdateBatch(Collection<User> entityList) {
+        return baseMapper.saveOrUpdateBatch(entityList);
     }
 
 
